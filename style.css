@@ -1,0 +1,18 @@
+@import "components/video/video.css";
+@import "components/grid/grid.css";
+
+:root {
+  --bg-color: #333;
+  --border-color: #666;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
