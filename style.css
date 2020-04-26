@@ -1,4 +1,5 @@
-@import "components/video/video.css";
+@import "components/video.css";
+@import "components/video-controls.css";
 
 :root {
   --bg-color: #333;
