@@ -1,5 +1,4 @@
 @import "components/video/video.css";
-@import "components/grid/grid.css";
 
 :root {
   --bg-color: #333;
@@ -14,5 +13,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+main {
+  height: 100%;
 }
 
