@@ -1,12 +1,24 @@
+let audioAnalyser = null;
+
 function openFullScreen(event) {
     event.currentTarget.classList.add('video_full-screen');
+
+    const video = event.currentTarget.querySelector('video');
+    video.muted = false;
+
+    visualizeAudio(video);
 }
 
 function exitFullScreen(event) {
     event.stopPropagation();
 
-    const video = event.currentTarget.closest('.video');
-    video.classList.remove('video_full-screen');
+    const videoContainer = event.currentTarget.closest('.video');
+    videoContainer.classList.remove('video_full-screen');
+
+    const video = videoContainer.querySelector('video');
+    video.muted = true;
+
+    audioAnalyser = null;
 }
 
 function changeBrightness(event) {
@@ -23,6 +35,17 @@ function changeContrast(event) {
     const video = videoContainer.querySelector('video');
 
     video.style.filter = `contrast(${value})`;
+}
+
+function visualizeAudio(video) {
+    const videoContainer = video.closest('.video');
+    const visualizer = videoContainer.querySelector('.video-controls__volume-level');
+
+    audioAnalyser = new Analyser(video);
+    audioAnalyser.update = function (bands) {
+        const value = bands.reduce((acc, band) => acc + band, 0) / 256;
+        visualizer.style.width = `${Math.round(value)}%`;
+    };
 }
 
 (function () {
